@@ -63,7 +63,7 @@ class Form_Field_Interface {
 						'description' => __( 'Returns a raw field setting by key', 'wp-graphql-ninja-forms' ),
 						'args'        => [
 							'name' => [
-								'type'        => [ 'non_null' => 'String' ],
+								'type'        => 'String',
 								'description' => __( 'Raw Ninja Forms setting key (for example: placeholder, desc_text, default)', 'wp-graphql-ninja-forms' ),
 							],
 						],
