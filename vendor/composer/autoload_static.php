@@ -29,6 +29,7 @@ class ComposerStaticInit24abdfdfdef450ca1376b6314df711a6
         'WPGraphQL\\NinjaForms\\Data\\Connection\\Form_Connection_Resolver' => __DIR__ . '/../..' . '/src/data/connection/class-form-connection-resolver.php',
         'WPGraphQL\\NinjaForms\\Data\\Loader\\Field_Loader' => __DIR__ . '/../..' . '/src/data/loader/class-field-loader.php',
         'WPGraphQL\\NinjaForms\\Data\\Loader\\Form_Loader' => __DIR__ . '/../..' . '/src/data/loader/class-form-loader.php',
+        'WPGraphQL\\NinjaForms\\Enum\\Field_Label_Pos_Enums' => __DIR__ . '/../..' . '/src/type/enum/class-field-label-pos-enums.php',
         'WPGraphQL\\NinjaForms\\Enum\\Id_Type_Enums' => __DIR__ . '/../..' . '/src/type/enum/class-id-type-enums.php',
         'WPGraphQL\\NinjaForms\\Model\\Field_Model' => __DIR__ . '/../..' . '/src/model/class-field-model.php',
         'WPGraphQL\\NinjaForms\\Model\\Form_Model' => __DIR__ . '/../..' . '/src/model/class-form-model.php',
