@@ -54,6 +54,10 @@ class Form_Field_Interface {
 						'type'        => 'String',
 						'description' => __( 'Description/help text of the field', 'wp-graphql-ninja-forms' ),
 					],
+					'settingsJson'           => [
+						'type'        => 'String',
+						'description' => __( 'All raw field settings encoded as JSON', 'wp-graphql-ninja-forms' ),
+					],
 					'key'                    => [
 						'type'        => 'String',
 						'description' => __( 'Key of the field', 'wp-graphql-ninja-forms' ),

@@ -84,6 +84,10 @@ class Field_Model extends WPGQLModel {
 
 					return null;
 				},
+				'settingsJson'   => function () {
+					$json = wp_json_encode( $this->data->get_settings() );
+					return false === $json ? null : $json;
+				},
 			];
 
 			$all_settings = $this->data->get_settings();
