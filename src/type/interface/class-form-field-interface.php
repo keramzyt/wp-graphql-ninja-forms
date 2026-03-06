@@ -58,6 +58,20 @@ class Form_Field_Interface {
 						'type'        => 'String',
 						'description' => __( 'All raw field settings encoded as JSON', 'wp-graphql-ninja-forms' ),
 					],
+					'setting'                => [
+						'type'        => 'String',
+						'description' => __( 'Returns a raw field setting by key', 'wp-graphql-ninja-forms' ),
+						'args'        => [
+							'name' => [
+								'type'        => [ 'non_null' => 'String' ],
+								'description' => __( 'Raw Ninja Forms setting key (for example: placeholder, desc_text, default)', 'wp-graphql-ninja-forms' ),
+							],
+						],
+						'resolve'     => function ( Field_Model $model, array $args ) {
+							$name = isset( $args['name'] ) ? $args['name'] : '';
+							return $model->get_setting_as_string( $name );
+						},
+					],
 					'key'                    => [
 						'type'        => 'String',
 						'description' => __( 'Key of the field', 'wp-graphql-ninja-forms' ),

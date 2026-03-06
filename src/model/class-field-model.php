@@ -40,6 +40,45 @@ class Field_Model extends WPGQLModel {
 	}
 
 	/**
+	 * Returns a single raw field setting value formatted for GraphQL String fields.
+	 *
+	 * @param string $name Setting name.
+	 *
+	 * @return string|null
+	 */
+	public function get_setting_as_string( $name ) {
+		if ( ! is_string( $name ) || '' === $name ) {
+			return null;
+		}
+
+		return self::normalize_setting_value( $this->data->get_setting( $name ) );
+	}
+
+	/**
+	 * Normalizes a setting value to a GraphQL String-compatible value.
+	 *
+	 * @param mixed $value Setting value.
+	 *
+	 * @return string|null
+	 */
+	private static function normalize_setting_value( $value ) {
+		if ( null === $value ) {
+			return null;
+		}
+
+		if ( is_bool( $value ) ) {
+			return $value ? 'true' : 'false';
+		}
+
+		if ( is_scalar( $value ) ) {
+			return (string) $value;
+		}
+
+		$json = wp_json_encode( $value );
+		return false === $json ? null : $json;
+	}
+
+	/**
 	 * Initializes the field resolvers
 	 *
 	 * @return void
