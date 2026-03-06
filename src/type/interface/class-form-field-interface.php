@@ -46,6 +46,14 @@ class Form_Field_Interface {
 						'type'        => 'String',
 						'description' => __( 'Label of the field', 'wp-graphql-ninja-forms' ),
 					],
+					'placeholder'            => [
+						'type'        => 'String',
+						'description' => __( 'Placeholder text of the field', 'wp-graphql-ninja-forms' ),
+					],
+					'descriptionText'        => [
+						'type'        => 'String',
+						'description' => __( 'Description/help text of the field', 'wp-graphql-ninja-forms' ),
+					],
 					'key'                    => [
 						'type'        => 'String',
 						'description' => __( 'Key of the field', 'wp-graphql-ninja-forms' ),

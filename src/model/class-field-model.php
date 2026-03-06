@@ -61,6 +61,29 @@ class Field_Model extends WPGQLModel {
 						? Relay::toGlobalId( 'FormField', $this->data->get_id() )
 						: null;
 				},
+				'placeholder'     => function () {
+					$placeholder = $this->data->get_setting( 'placeholder' );
+					return is_scalar( $placeholder ) ? (string) $placeholder : null;
+				},
+				'descriptionText' => function () {
+					$description = $this->data->get_setting( 'desc_text' );
+
+					if ( is_scalar( $description ) ) {
+						return (string) $description;
+					}
+
+					$description = $this->data->get_setting( 'description' );
+
+					if ( is_scalar( $description ) ) {
+						return (string) $description;
+					}
+
+					if ( is_array( $description ) && isset( $description['desc_text'] ) && is_scalar( $description['desc_text'] ) ) {
+						return (string) $description['desc_text'];
+					}
+
+					return null;
+				},
 			];
 
 			$all_settings = $this->data->get_settings();
