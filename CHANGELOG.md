@@ -1,5 +1,21 @@
 #  Change Log
 
+## [0.1.4.1](https://github.com/toriphes/wp-graphql-ninja-forms/compare/0.1.4...0.1.4.1) (2026-04-22)
+
+
+### Features
+
+* expose raw settingsJson and dynamic setting(name) accessors for FormField
+* expose placeholder and descriptionText fields for FormField GraphQL types
+
+
+### Bug Fixes
+
+* make FormField explicitly implement Node for WPGraphQL Connection compatibility
+* preserve common field definitions when merging dynamic Ninja Forms settings (including labelPos enum)
+* normalize dynamic field descriptions to prevent callable-string introspection fatals
+
+
 ## [0.1.4](https://github.com/toriphes/wp-graphql-ninja-forms/compare/0.1.3...0.1.4) (2021-09-01)
 
 
