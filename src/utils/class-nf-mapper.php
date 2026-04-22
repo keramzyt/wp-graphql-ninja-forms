@@ -14,6 +14,26 @@ namespace WPGraphQL\NinjaForms\Utils;
  */
 class NF_Mapper {
 	/**
+	 * Normalize a schema description so it won't be interpreted as a callable string by WPGraphQL.
+	 *
+	 * @param mixed $description Raw description value.
+	 *
+	 * @return string
+	 */
+	private static function normalize_description( $description ) {
+		$description = is_scalar( $description ) ? (string) $description : '';
+
+		if ( '' === $description ) {
+			return '';
+		}
+
+		if ( is_callable( $description ) ) {
+			return 'Ninja Forms setting: ' . $description;
+		}
+
+		return $description;
+	}
+	/**
 	 * Return fields from the ninja form settings
 	 *
 	 * @param array  $data ninja form entity settigns.
@@ -27,6 +47,7 @@ class NF_Mapper {
 
 		foreach ( $data as $setting ) {
 			$field_name = graphql_format_field_name( $setting['name'] );
+			$description = self::normalize_description( isset( $setting['label'] ) ? $setting['label'] : $setting['name'] );
 
 			if ( empty( $field_name ) ) {
 				continue;
@@ -35,7 +56,7 @@ class NF_Mapper {
 			if ( 'option-repeater' === $setting['type'] ) {
 				$fields[ $field_name ] = [
 					'type'        => [ 'list_of' => 'FieldOption' ],
-					'description' => $setting['name'],
+					'description' => $description,
 				];
 			} elseif ( 'fieldset' === $setting['type'] ) {
 				$type = $base_type . ucfirst( $field_name );
@@ -45,7 +66,7 @@ class NF_Mapper {
 					register_graphql_object_type(
 						$type,
 						[
-							'description' => $setting['label'],
+							'description' => $description,
 							'fields'      => self::get_fields( $setting['settings'], $type ),
 						]
 					);
@@ -53,7 +74,7 @@ class NF_Mapper {
 
 				$fields[ $field_name ] = [
 					'type'        => $type,
-					'description' => $setting['label'],
+					'description' => $description,
 				];
 			} else {
 				switch ( $setting['type'] ) {
@@ -69,7 +90,7 @@ class NF_Mapper {
 
 				$fields[ $field_name ] = [
 					'type'        => $type,
-					'description' => isset( $setting['label'] ) ? $setting['label'] : $setting['name'],
+					'description' => $description,
 				];
 			}
 		}

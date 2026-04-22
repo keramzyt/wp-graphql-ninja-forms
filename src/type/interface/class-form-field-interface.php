@@ -28,6 +28,7 @@ class Form_Field_Interface {
 		register_graphql_interface_type(
 			'FormField',
 			[
+				'interfaces'  => [ 'Node' ],
 				'description' => __( 'Action object', 'wp-graphql-ninja-forms' ),
 				'fields'      => [
 					'id'                     => [

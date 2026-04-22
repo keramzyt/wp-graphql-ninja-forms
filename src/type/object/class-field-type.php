@@ -34,8 +34,8 @@ class Field_Type {
 			$type_name = ucfirst( $field->get_name() ) . 'Field';
 
 			$fields = array_merge(
-				self::get_common_fields(),
-				NF_Mapper::get_fields( $field->get_settings(), $type_name )
+				NF_Mapper::get_fields( $field->get_settings(), $type_name ),
+				self::get_common_fields()
 			);
 
 			register_graphql_object_type(
@@ -209,7 +209,7 @@ class Field_Type {
 				'description' => __( 'The field is required?', 'wp-graphql-ninja-forms' ),
 			],
 			'labelPos'               => [
-				'type'        => 'String',
+				'type'        => 'FieldLabelPosEnum',
 				'description' => __( 'Position of the label', 'wp-graphql-ninja-forms' ),
 			],
 			'personallyIdentifiable' => [
